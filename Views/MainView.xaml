@@ -1,0 +1,33 @@
+﻿<Window x:Class="kontrolnaya.Views.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Заявки на ремонт" Height="500" Width="900"
+        WindowStartupLocation="CenterScreen">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Список заявок" FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
+
+        <DataGrid Grid.Row="1"
+          ItemsSource="{Binding Requests}"
+          SelectedItem="{Binding SelectedRequest, Mode=TwoWay}"
+          AutoGenerateColumns="False"
+          Margin="0,0,0,50">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Номер" Binding="{Binding RequestNumber}" Width="*" />
+                <DataGridTextColumn Header="Описание" Binding="{Binding Title}" Width="2*" />
+                <DataGridTextColumn Header="Тип" Binding="{Binding Type}" Width="*" />
+                <DataGridTextColumn Header="Статус" Binding="{Binding Status}" Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,0,10">
+            <Button Content="Добавить" Width="100" Margin="5" Command="{Binding AddCommand}"/>
+            <Button Content="Редактировать" Width="100" Margin="5" Command="{Binding EditCommand}"/>
+            <Button Content="Удалить" Width="100" Margin="5" Command="{Binding DeleteCommand}"/>
+        </StackPanel>
+    </Grid>
+</Window>
